@@ -1,0 +1,2 @@
+# Java
+ This repository contains solutions to basic problems solved using Java. The problems are elementary in nature, focusing on fundamental concepts and techniques in Java programming. The code demonstrates simple and clear solutions, making it a great resource for beginners or anyone looking to refresh their knowledge of Java basics. Each solution is well-documented and easy to follow, providing an excellent starting point for those new to the language or looking to strengthen their programming skills.
