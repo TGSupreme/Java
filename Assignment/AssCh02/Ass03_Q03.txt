@@ -1,0 +1,90 @@
+question 3 :
+
+at a always true 
+at b sometimes true or sometimes false
+at c always false
+
+
+question 4 :
+
+Output of the code is 
+
+x is -2147483648
+
+bcz in the loop will increament upto the range of the int which is 2147483647
+once the int is reached to 2147483647 and we increment it ,it'll wrap to the value -2147483648
+Now the condition of the loop become false and the loop gets terminated
+so the final value of x will be -2147483648
+
+
+Question 5 : 
+
+i) 
+==>  if(score > 90){
+       pay = pay + 0.3;
+     }
+
+ii) 
+==> if(y > 0){
+    x = 1;
+    }
+
+
+Question 6 : 
+
+    after the execution value of y will be 2 bcz there is no break statement in the case,
+    so defualt will also execute
+
+    using if statement
+    int x = 3; 
+    int y = 3;
+    
+    if ((x + 3) == 6) {
+        y = 1;
+    } 
+    else {
+        y += 1;
+    }
+    y += 1; 
+
+
+
+Question 8 : 
+
+    Scanner input = new Scanner(System.in);
+        int sum = 0
+        do {
+            sum += number;
+            System.out.println("Enter an integer " +
+                    "(the input ends if it is 0)");
+            number = input.nextInt();
+        }while (number != 0);
+
+
+Question 9 : 
+
+    for(byte i = 1 ;i <= 100 ; i++){
+            System.out.print(i + " ");
+    }
+
+Question 10;
+
+i) 
+==>
+     long sum = 0;
+    int i = 0;
+    while(i <= 1000){
+        sum = sum + i;
+        i++;
+    }
+    
+    
+ii)
+==>    
+    long sum = 0;
+    int i = 0;
+    do{
+        sum = sum + i;
+        i++;
+    }while(i <= 1000);
+    System.out.println(sum); 
