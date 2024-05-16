@@ -1,29 +1,49 @@
-import java.util.*;
+import java.util.Scanner;
 
 public class tp {
 
     public static void main(String[] args) {
+    int n ;
 
-        int a[][] = new int[6][6];
+    Scanner sc = new Scanner(System.in);
+    n = sc.nextInt();
 
-        Random rm = new Random();
 
-        for (byte i = 0; i < 6 ; i++){
-            for(byte j = 0 ; j < 6; j++){
-                a[i][j] = rm.nextInt(2);
-            }
+    int a [][] = new int [n][n];
+
+    
+    for(int i = 0;i<n;i++){
+        for (int j = 0;j<n;j++){
+            a[i][j]=sc.nextInt();
+        
         }
         
-        for (byte i = 0; i < 6 ; i++){
-            System.out.print("| ");
-            for(byte j = 0 ; j < 6; j++){
-                System.out.print(a[i][j] + "   ");
-                // a[i][j] = rm.nextBytes(1);
-            }
-            System.out.println("|");
-        }
+       
+    }
 
+
+
+
+
+
+    for ( int i=0 ; i <n ; i ++){
+        for(int j =0 ;j<n;j++){
+
+            System.out.print(a[i][j]+ " " );
+        }
+        System.out.println();
+    }
+    
+    
+    
+    
+    }
+         
+        
+         
         
     }
 
-}
+    // int add (int x, int y)
+    
+
