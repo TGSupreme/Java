@@ -1,49 +1,51 @@
-import java.util.Scanner;
+import java.util.Random;
 
+/**
+ * tp
+ */
 public class tp {
 
     public static void main(String[] args) {
-    int n ;
-
-    Scanner sc = new Scanner(System.in);
-    n = sc.nextInt();
-
-
-    int a [][] = new int [n][n];
-
-    
-    for(int i = 0;i<n;i++){
-        for (int j = 0;j<n;j++){
-            a[i][j]=sc.nextInt();
+      
+        Random rm = new Random();
         
+        for(int i = 0 ; i< 10 ;i++){
+            int a = rm.nextInt();
+            System.out.println(a);
         }
-        
+
        
-    }
+        // acc ac = new acc("hjk",234);
 
-
-
-
-
-
-    for ( int i=0 ; i <n ; i ++){
-        for(int j =0 ;j<n;j++){
-
-            System.out.print(a[i][j]+ " " );
-        }
-        System.out.println();
+        // System.out.println(ac.name);
+        // System.out.println(ac.accno);
+        // System.out.println(ac.balance);
     }
     
-    
-    
-    
-    }
-         
-        
-         
-        
-    }
+}
 
-    // int add (int x, int y)
-    
 
+class acc{
+    String name;
+    long accno;
+    double balance;
+
+    acc(){
+        name = "abc";
+        accno = 123;
+        balance = 300.34;
+    }  
+    
+    acc(String a,long b,double c){
+        name = a;
+        accno = b;
+        balance = c;
+    }  
+
+    acc(String a,long b){
+        name = a;
+        accno = b;
+    }  
+
+
+}
