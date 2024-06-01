@@ -1,6 +1,4 @@
-/**
- * Oop_14_Constructor
- */
+
 public class Oop_14_Constructor {
     public static void main(String[] args){
         box b1 = new box();

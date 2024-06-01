@@ -13,22 +13,22 @@ class Area{
     void area(int x){
         //Square
         int ans = x*x;
-        System.out.println("Area of Square = "+ ans);
+        System.out.println("Area = "+ ans);
     }
     void area(int x,int y){
         //ractangle
         int ans = x*y;
-        System.out.println("Area of Ractangle = "+ ans);
+        System.out.println("Area = "+ ans);
     }
     void area(double x){
         //circle
         double ans = (3.14 * x * x);
-        System.out.println("Area of Circle = "+ ans);
+        System.out.println("Area = "+ ans);
     }
     void area(double x, double y){
         //triangle
         double ans = (0.5 * x * y);
-        System.out.println("Area Of Triangle = "+ ans);
+        System.out.println("Area = "+ ans);
     }
 }
 

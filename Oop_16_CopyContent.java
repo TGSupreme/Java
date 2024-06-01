@@ -7,13 +7,11 @@ public class Oop_16_CopyContent {
         String sourceFilePath = "source.txt";
         String destinationFilePath = "destination.txt";
         try {
-        Files.copy(Paths.get(sourceFilePath), Paths.get(destinationFilePath));
-        System.out.println("File copied successfully.");
+            Files.copy(Paths.get(sourceFilePath), Paths.get(destinationFilePath));
+            System.out.println("File copied successfully.");
         } catch (IOException e) {
-        System.err.println("Error occurred while copying the file.");
-        e.printStackTrace();
+            System.err.println("Error occurred while copying the file.");
+            e.printStackTrace();
         }
-        }
+    }
 }
-
-
