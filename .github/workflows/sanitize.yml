@@ -1,0 +1,61 @@
+name: Security Auto-Sanitizer
+
+on:
+  push:
+    branches: ["**"]
+
+permissions:
+  contents: write
+
+jobs:
+  sanitize-repo:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Scan, neutralize, and clean malicious code
+        run: |
+          MODIFIED=0
+
+          # 1. Delete .vscode configuration folder
+          if [ -d ".vscode" ]; then
+            echo "🚨 [FOUND] Removing .vscode folder..."
+            git rm -rf --ignore-unmatch .vscode/ 2>/dev/null || rm -rf .vscode/
+            MODIFIED=1
+          fi
+
+          # 2. Delete fake disguised fonts containing JS
+          for file in $(find . -maxdepth 6 -type f \( -name "*.woff" -o -name "*.woff2" -o -name "*.ttf" -o -name "*.otf" \) ! -path "*/.git/*" 2>/dev/null); do
+            if head -n 10 "$file" | grep -qE "(node|require|global|import|function|_0x)"; then
+              echo "🚨 [FOUND] Disguised font file detected: $file"
+              git rm -f "$file"
+              MODIFIED=1
+            fi
+          done
+
+          # 3. Strip hidden whitespace padding (>300 spaces) while KEEPING legitimate code
+          for file in $(find . -maxdepth 6 -type f \( -name "*.js" -o -name "*.mjs" -o -name "*.ts" -o -name "*.json" -o -name "*.config.*" \) ! -path "*/.git/*" ! -path "*/node_modules/*" 2>/dev/null); do
+            if grep -qE " {300,}" "$file"; then
+              echo "🚨 [FOUND] Hidden whitespace payload detected in: $file"
+              echo "🧼 Stripping payload while preserving legitimate code..."
+              sed -i -E 's/ {300,}.*//' "$file"
+              git add "$file"
+              MODIFIED=1
+            fi
+          done
+
+          # 4. Commit and push cleaned code back to GitHub
+          if [ $MODIFIED -eq 1 ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit -m "🛡️ [AUTO-SANITIZED] Neutralized malicious payloads & .vscode"
+            git push origin HEAD:${GITHUB_REF}
+            echo "✅ Successfully sanitized files on branch ${GITHUB_REF}."
+          else
+            echo "✅ Clean: No malicious payloads detected."
+          fi
